@@ -40,7 +40,7 @@ public:
             if (value2==0 && op=="/") line->setText("错误"),flag=1;
             else{
                 value1=cal(op);
-                line->setText(QString::number(value1));
+                line->setText(numtos(value1));
             }
             value2=0;
             op=s;
@@ -51,7 +51,7 @@ public:
         if (value2==0 && op=="/") line->setText("错误"),flag=1;
         else{
         value=cal(op);
-        line->setText(QString::number(value));
+        line->setText(numtos(value));
         value1=value;
         }
         op="None";
@@ -68,9 +68,12 @@ public:
         if (flag) line->setText("0");
         QString text = line->text();
         text+=s;
-        line->setText(QString::number(text.toDouble(),'g',15));
+        line->setText(numtos(text.toDouble()));
         if (text.size()>15) line->setText("数字过大或精度过高"),flag=1;
         flag=0;
+    }
+        QString numtos(double num){
+            return QString::number(num,'g',15);
     }
 };
 #endif // MAINWINDOW_H
